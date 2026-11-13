@@ -1,0 +1,16 @@
+Metric,Value
+Total Transactions,1000
+Total Customers,200
+Unique Sales Customers,200
+Gross Revenue,8456050
+Revenue After Discounts,8021851.2
+Realized Revenue After Returns,7200464.2
+Returned Transactions,97
+Return Rate (%),9.7
+Average Transaction Value,7200.46
+Active Customers,194
+Churned Customers,6
+Churn Rate (%),3.0
+Average Revenue Per Customer,36002.32
+First Transaction Date,2024-07-02
+Last Transaction Date,2026-06-28

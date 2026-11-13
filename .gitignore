@@ -1,0 +1,16 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.vscode/
+
+# Protect all customer and transaction datasets
+Data/*.csv
+data/*.csv
+
+# Exclude detailed customer-level reports
+Reports/date_inconsistencies.csv
+reports/date_inconsistencies.csv
