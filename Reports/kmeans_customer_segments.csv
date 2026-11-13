@@ -1,0 +1,201 @@
+Customer_ID,Recency,Frequency,Monetary,R_Score,F_Score,M_Score,RFM_Score,Customer_Segment,City,Age_Band,Gender,Acquisition_Channel,Churned,Cluster,Business_Segment
+C1,313,5,23670.8,1,3,1,5,Low Value,Delhi,18-24,F,Marketplace,0,0,At-Risk Customers
+C10,235,5,41664.8,1,3,4,8,Below Average,Chennai,45-54,F,App,0,0,At-Risk Customers
+C100,313,5,21883.25,1,3,1,5,Low Value,Bangalore,35-44,F,App,0,0,At-Risk Customers
+C101,35,5,25352.6,5,3,1,9,Below Average,Delhi,55+,M,Website,0,1,Regular Customers
+C102,96,5,52209.8,3,3,5,11,High Value,Delhi,45-54,F,Marketplace,0,2,High-Value Customers
+C103,42,5,26330.5,4,3,2,9,Below Average,Chennai,35-44,F,Offline,0,1,Regular Customers
+C104,166,5,28470.8,2,3,2,7,Low Value,Hyderabad,55+,F,Offline,0,1,Regular Customers
+C105,118,5,48623.85,3,3,5,11,High Value,Mumbai,55+,F,Marketplace,0,2,High-Value Customers
+C106,34,5,13769.0,5,3,1,9,Below Average,Pune,45-54,F,Marketplace,0,1,Regular Customers
+C107,55,5,25813.3,4,3,2,9,Average,Hyderabad,55+,M,Website,0,1,Regular Customers
+C108,329,5,32525.9,1,3,3,7,Low Value,Mumbai,35-44,M,Marketplace,0,0,At-Risk Customers
+C109,283,5,26009.4,1,3,2,6,Low Value,Hyderabad,25-34,M,Website,0,0,At-Risk Customers
+C11,41,5,29000.3,4,3,2,9,Average,Hyderabad,35-44,F,Offline,0,1,Regular Customers
+C110,1,5,31814.3,5,3,2,10,High Value,Bangalore,45-54,F,Offline,0,1,Regular Customers
+C111,15,5,50434.65,5,3,5,13,Top Value,Pune,18-24,M,Marketplace,0,2,High-Value Customers
+C112,324,5,20452.1,1,3,1,5,Low Value,Hyderabad,55+,M,Offline,0,0,At-Risk Customers
+C113,51,5,40711.3,4,3,4,11,High Value,Hyderabad,45-54,M,Offline,0,2,High-Value Customers
+C114,65,5,25846.0,4,3,2,9,Average,Bangalore,25-34,F,App,0,1,Regular Customers
+C115,295,5,45412.65,1,3,4,8,Below Average,Bangalore,55+,F,Website,0,0,At-Risk Customers
+C116,154,5,32203.75,2,3,2,7,Low Value,Pune,25-34,F,Website,0,1,Regular Customers
+C117,17,5,45278.5,5,3,4,12,Top Value,Chennai,45-54,M,Offline,0,2,High-Value Customers
+C118,219,5,36674.25,2,3,3,8,Below Average,Hyderabad,35-44,M,App,0,0,At-Risk Customers
+C119,109,5,40122.45,3,3,4,10,High Value,Delhi,18-24,F,Offline,0,2,High-Value Customers
+C12,261,5,42824.0,1,3,4,8,Below Average,Mumbai,25-34,M,App,0,0,At-Risk Customers
+C120,55,5,43047.2,4,3,4,11,High Value,Mumbai,18-24,M,Marketplace,0,2,High-Value Customers
+C121,67,5,19280.95,4,3,1,8,Below Average,Pune,45-54,M,App,0,1,Regular Customers
+C122,285,5,42847.7,1,3,4,8,Below Average,Hyderabad,55+,F,App,0,0,At-Risk Customers
+C123,427,5,16376.4,1,3,1,5,Low Value,Pune,45-54,M,Website,0,0,At-Risk Customers
+C124,162,5,51827.6,2,3,5,10,High Value,Pune,55+,M,App,0,2,High-Value Customers
+C125,88,5,44557.65,3,3,4,10,High Value,Mumbai,55+,M,App,0,2,High-Value Customers
+C126,254,5,38103.8,1,3,3,7,Low Value,Mumbai,25-34,M,Offline,0,0,At-Risk Customers
+C127,38,5,20931.8,5,3,1,9,Average,Mumbai,18-24,F,App,0,1,Regular Customers
+C128,177,5,25565.9,2,3,2,7,Low Value,Mumbai,45-54,M,Website,0,1,Regular Customers
+C129,36,5,30764.9,5,3,2,10,High Value,Bangalore,45-54,F,Website,0,1,Regular Customers
+C13,94,5,58058.6,3,3,5,11,High Value,Chennai,18-24,M,App,0,2,High-Value Customers
+C130,263,5,38627.75,1,3,4,8,Below Average,Pune,25-34,F,Offline,0,0,At-Risk Customers
+C131,592,5,32875.0,1,3,3,7,Low Value,Mumbai,35-44,M,App,0,0,At-Risk Customers
+C132,143,5,35085.5,2,3,3,8,Below Average,Delhi,55+,F,Website,0,1,Regular Customers
+C133,473,5,33545.15,1,3,3,7,Low Value,Pune,18-24,F,Website,0,0,At-Risk Customers
+C134,8,5,33223.9,5,3,3,11,High Value,Chennai,35-44,M,Website,0,1,Regular Customers
+C135,301,5,38595.85,1,3,4,8,Below Average,Bangalore,35-44,M,Website,0,0,At-Risk Customers
+C136,115,5,21055.0,3,3,1,7,Low Value,Chennai,25-34,F,Marketplace,0,1,Regular Customers
+C137,13,5,54048.45,5,3,5,13,Top Value,Delhi,45-54,F,Marketplace,0,2,High-Value Customers
+C138,156,5,33379.65,2,3,3,8,Below Average,Pune,45-54,M,Offline,0,1,Regular Customers
+C139,101,5,48254.25,3,3,4,10,High Value,Hyderabad,25-34,F,Offline,0,2,High-Value Customers
+C14,115,5,29505.7,3,3,2,8,Below Average,Chennai,18-24,F,Marketplace,0,1,Regular Customers
+C140,120,5,20214.5,3,3,1,7,Low Value,Mumbai,55+,M,Marketplace,0,1,Regular Customers
+C141,40,5,23652.0,4,3,1,8,Below Average,Chennai,55+,F,App,0,1,Regular Customers
+C142,205,5,48551.8,2,3,5,10,High Value,Hyderabad,35-44,F,App,0,2,High-Value Customers
+C143,321,5,39675.95,1,3,4,8,Below Average,Mumbai,25-34,M,Marketplace,0,0,At-Risk Customers
+C144,93,5,44063.55,3,3,4,10,High Value,Bangalore,55+,F,Offline,0,2,High-Value Customers
+C145,13,5,36616.65,5,3,3,11,High Value,Pune,35-44,F,App,1,1,Regular Customers
+C146,171,5,26642.95,2,3,2,7,Low Value,Hyderabad,25-34,F,Website,0,1,Regular Customers
+C147,40,5,41227.55,4,3,4,11,High Value,Pune,35-44,M,Website,0,2,High-Value Customers
+C148,66,5,75533.95,4,3,5,12,Top Value,Pune,35-44,M,Offline,0,2,High-Value Customers
+C149,65,5,54439.0,4,3,5,12,Top Value,Mumbai,25-34,F,Offline,0,2,High-Value Customers
+C15,277,5,41573.6,1,3,4,8,Below Average,Pune,45-54,F,App,0,0,At-Risk Customers
+C150,525,5,29202.2,1,3,2,6,Low Value,Hyderabad,35-44,F,Website,0,0,At-Risk Customers
+C151,40,5,16279.9,4,3,1,8,Below Average,Mumbai,25-34,F,Offline,0,1,Regular Customers
+C152,127,5,38156.9,3,3,3,9,Average,Pune,55+,M,App,0,1,Regular Customers
+C153,21,5,37238.4,5,3,3,11,High Value,Pune,45-54,M,Offline,0,1,Regular Customers
+C154,85,5,36338.0,3,3,3,9,Average,Delhi,45-54,M,Offline,0,1,Regular Customers
+C155,34,5,25326.0,5,3,1,9,Average,Pune,18-24,F,App,0,1,Regular Customers
+C156,2,5,25389.8,5,3,1,9,Average,Delhi,45-54,M,Marketplace,0,1,Regular Customers
+C157,63,5,47660.2,4,3,4,11,High Value,Mumbai,18-24,F,App,0,2,High-Value Customers
+C158,126,5,34872.35,3,3,3,9,Average,Bangalore,25-34,F,Offline,0,1,Regular Customers
+C159,128,5,33579.75,3,3,3,9,Average,Delhi,18-24,M,Website,0,1,Regular Customers
+C16,353,5,26044.4,1,3,2,6,Low Value,Pune,45-54,F,Marketplace,1,0,At-Risk Customers
+C160,330,5,62895.95,1,3,5,9,Average,Bangalore,18-24,M,Marketplace,0,2,High-Value Customers
+C161,87,5,51751.65,3,3,5,11,Top Value,Delhi,18-24,F,Offline,0,2,High-Value Customers
+C162,66,5,37049.65,4,3,3,10,High Value,Mumbai,55+,M,App,0,1,Regular Customers
+C163,141,5,40837.9,2,3,4,9,Average,Mumbai,18-24,M,Offline,0,2,High-Value Customers
+C164,63,5,38670.95,4,3,4,11,Top Value,Mumbai,55+,F,Website,0,1,Regular Customers
+C165,43,5,32311.9,4,3,2,9,Average,Pune,45-54,M,Website,0,1,Regular Customers
+C166,22,5,44871.2,5,3,4,12,Top Value,Pune,35-44,M,Website,0,2,High-Value Customers
+C167,160,5,68139.2,2,3,5,10,High Value,Hyderabad,55+,M,Offline,0,2,High-Value Customers
+C168,65,5,48921.0,4,3,5,12,Top Value,Pune,55+,F,Marketplace,0,2,High-Value Customers
+C169,165,5,16363.8,2,3,1,6,Low Value,Pune,45-54,M,Website,0,1,Regular Customers
+C17,130,5,36371.6,3,3,3,9,Average,Delhi,35-44,F,Website,0,1,Regular Customers
+C170,98,5,56758.8,3,3,5,11,Top Value,Delhi,55+,M,Marketplace,0,2,High-Value Customers
+C171,83,5,35877.05,3,3,3,9,Average,Chennai,25-34,F,Offline,0,1,Regular Customers
+C172,109,5,60868.5,3,3,5,11,Top Value,Delhi,18-24,F,Website,0,2,High-Value Customers
+C173,102,5,42189.0,3,3,4,10,High Value,Chennai,45-54,F,Offline,0,2,High-Value Customers
+C174,22,5,20504.0,5,3,1,9,Average,Delhi,35-44,F,App,0,1,Regular Customers
+C175,419,5,42602.05,1,3,4,8,Below Average,Mumbai,45-54,F,App,0,0,At-Risk Customers
+C176,110,5,59473.850000000006,3,3,5,11,Top Value,Pune,18-24,F,Marketplace,0,2,High-Value Customers
+C177,275,5,35851.4,1,3,3,7,Low Value,Bangalore,25-34,M,Website,0,0,At-Risk Customers
+C178,142,5,39690.4,2,3,4,9,Average,Delhi,25-34,M,Website,0,2,High-Value Customers
+C179,134,5,51063.1,3,3,5,11,Top Value,Mumbai,18-24,F,Offline,0,2,High-Value Customers
+C18,113,5,52069.0,3,3,5,11,Top Value,Mumbai,55+,F,App,0,2,High-Value Customers
+C180,51,5,33273.8,4,3,3,10,High Value,Chennai,45-54,F,Offline,0,1,Regular Customers
+C181,53,5,23452.4,4,3,1,8,Below Average,Delhi,55+,M,Website,0,1,Regular Customers
+C182,386,5,28876.5,1,3,2,6,Low Value,Delhi,45-54,F,App,0,0,At-Risk Customers
+C183,79,5,18147.0,4,3,1,8,Below Average,Bangalore,35-44,M,Offline,0,1,Regular Customers
+C184,129,5,69311.7,3,3,5,11,Top Value,Bangalore,25-34,M,App,0,2,High-Value Customers
+C185,144,5,34097.9,2,3,3,8,Below Average,Chennai,25-34,F,Website,0,1,Regular Customers
+C186,311,5,42167.9,1,3,4,8,Below Average,Hyderabad,55+,M,Offline,0,0,At-Risk Customers
+C187,17,5,40483.75,5,3,4,12,Top Value,Hyderabad,45-54,M,Website,0,2,High-Value Customers
+C188,94,5,48584.75,3,3,5,11,Top Value,Chennai,35-44,F,Offline,0,2,High-Value Customers
+C189,142,5,38251.2,2,3,4,9,Average,Delhi,55+,M,Offline,0,1,Regular Customers
+C19,158,5,29464.35,2,3,2,7,Low Value,Hyderabad,45-54,M,Website,0,1,Regular Customers
+C190,261,5,27420.9,1,3,2,6,Low Value,Bangalore,25-34,M,App,1,0,At-Risk Customers
+C191,19,5,19189.4,5,3,1,9,Average,Hyderabad,45-54,F,Marketplace,0,1,Regular Customers
+C192,152,5,37483.55,2,3,3,8,Below Average,Hyderabad,45-54,F,Website,0,1,Regular Customers
+C193,83,5,55406.8,3,3,5,11,Top Value,Mumbai,18-24,F,Marketplace,0,2,High-Value Customers
+C194,372,5,15048.25,1,3,1,5,Low Value,Hyderabad,45-54,F,App,0,0,At-Risk Customers
+C195,53,5,40126.6,4,3,4,11,Top Value,Bangalore,25-34,M,Website,0,2,High-Value Customers
+C196,229,5,30773.4,2,3,2,7,Low Value,Delhi,55+,F,App,0,0,At-Risk Customers
+C197,12,5,33031.55,5,3,3,11,Top Value,Hyderabad,18-24,M,Website,0,1,Regular Customers
+C198,57,5,33674.15,4,3,3,10,High Value,Delhi,35-44,F,Website,0,1,Regular Customers
+C199,64,5,36521.45,4,3,3,10,High Value,Mumbai,45-54,M,App,0,1,Regular Customers
+C2,244,5,27117.45,1,3,2,6,Low Value,Mumbai,18-24,M,App,0,0,At-Risk Customers
+C20,36,5,48741.6,5,3,5,13,Top Value,Bangalore,55+,F,Website,0,2,High-Value Customers
+C200,250,5,33024.8,1,3,3,7,Low Value,Mumbai,55+,M,Website,0,0,At-Risk Customers
+C21,18,5,32656.0,5,3,3,11,Top Value,Mumbai,45-54,F,App,0,1,Regular Customers
+C22,26,5,26427.25,5,3,2,10,High Value,Hyderabad,35-44,F,Website,0,1,Regular Customers
+C23,109,5,36282.1,3,3,3,9,Average,Chennai,35-44,F,App,0,1,Regular Customers
+C24,536,5,56820.5,1,3,5,9,Average,Pune,18-24,F,Website,0,0,At-Risk Customers
+C25,139,5,40877.850000000006,2,3,4,9,Average,Pune,25-34,M,App,0,2,High-Value Customers
+C26,168,5,22479.35,2,3,1,6,Low Value,Pune,55+,F,App,0,1,Regular Customers
+C27,126,5,12322.1,3,3,1,7,Low Value,Pune,18-24,F,Offline,0,1,Regular Customers
+C28,390,5,27648.85,1,3,2,6,Low Value,Delhi,45-54,F,Offline,0,0,At-Risk Customers
+C29,209,5,27551.1,2,3,2,7,Low Value,Delhi,25-34,F,Website,0,0,At-Risk Customers
+C3,155,5,30645.4,2,3,2,7,Low Value,Hyderabad,18-24,F,Marketplace,0,1,Regular Customers
+C30,17,5,30340.6,5,3,2,10,High Value,Delhi,55+,M,Website,0,1,Regular Customers
+C31,73,5,26323.5,4,3,2,9,Average,Mumbai,45-54,F,Offline,0,1,Regular Customers
+C32,188,5,30003.9,2,3,2,7,Below Average,Bangalore,25-34,F,Marketplace,0,1,Regular Customers
+C33,12,5,10362.2,5,3,1,9,Average,Pune,18-24,F,Marketplace,0,1,Regular Customers
+C34,28,5,48331.6,5,3,5,13,Top Value,Mumbai,55+,F,App,0,2,High-Value Customers
+C35,110,5,67265.2,3,3,5,11,Top Value,Delhi,45-54,F,Website,0,2,High-Value Customers
+C36,282,5,27774.0,1,3,2,6,Low Value,Hyderabad,45-54,F,Offline,0,0,At-Risk Customers
+C37,108,5,13506.1,3,3,1,7,Below Average,Chennai,45-54,F,App,0,1,Regular Customers
+C38,325,5,31838.15,1,3,2,6,Low Value,Mumbai,18-24,M,Offline,0,0,At-Risk Customers
+C39,34,5,41814.05,5,3,4,12,Top Value,Delhi,25-34,F,App,0,2,High-Value Customers
+C4,100,5,25473.1,3,3,2,8,Below Average,Pune,45-54,M,Marketplace,0,1,Regular Customers
+C40,81,5,50763.0,3,3,5,11,Top Value,Bangalore,45-54,F,Offline,0,2,High-Value Customers
+C41,39,5,23028.45,4,3,1,8,Below Average,Pune,45-54,M,Website,0,1,Regular Customers
+C42,348,5,37221.25,1,3,3,7,Below Average,Hyderabad,25-34,F,Offline,0,0,At-Risk Customers
+C43,48,5,39094.9,4,3,4,11,Top Value,Hyderabad,18-24,M,Marketplace,0,1,Regular Customers
+C44,221,5,33336.35,2,3,3,8,Below Average,Chennai,55+,F,App,0,0,At-Risk Customers
+C45,51,5,62006.85,4,3,5,12,Top Value,Chennai,35-44,F,Offline,0,2,High-Value Customers
+C46,160,5,46868.2,2,3,4,9,Average,Pune,18-24,M,Marketplace,0,2,High-Value Customers
+C47,96,5,61060.8,3,3,5,11,Top Value,Mumbai,45-54,M,Marketplace,0,2,High-Value Customers
+C48,201,5,32698.4,2,3,3,8,Below Average,Mumbai,18-24,F,Website,0,0,At-Risk Customers
+C49,326,5,55558.7,1,3,5,9,Average,Chennai,18-24,M,Marketplace,0,0,At-Risk Customers
+C5,196,5,28752.2,2,3,2,7,Below Average,Pune,45-54,F,Offline,0,1,Regular Customers
+C50,76,5,27525.15,4,3,2,9,Average,Pune,18-24,M,App,0,1,Regular Customers
+C51,9,5,35614.75,5,3,3,11,Top Value,Bangalore,18-24,M,Offline,0,1,Regular Customers
+C52,223,5,17473.7,2,3,1,6,Low Value,Hyderabad,45-54,F,Offline,0,0,At-Risk Customers
+C53,54,5,36594.5,4,3,3,10,High Value,Bangalore,55+,F,Offline,1,1,Regular Customers
+C54,109,5,18028.85,3,3,1,7,Below Average,Chennai,35-44,M,Website,0,1,Regular Customers
+C55,8,5,22906.8,5,3,1,9,Average,Bangalore,18-24,F,Website,0,1,Regular Customers
+C56,160,5,56749.25,2,3,5,10,High Value,Hyderabad,55+,M,Website,0,2,High-Value Customers
+C57,148,5,16651.0,2,3,1,6,Low Value,Chennai,25-34,F,Website,0,1,Regular Customers
+C58,26,5,28118.3,5,3,2,10,High Value,Pune,35-44,M,App,0,1,Regular Customers
+C59,1,5,34984.45,5,3,3,11,Top Value,Delhi,55+,M,Marketplace,0,1,Regular Customers
+C6,39,5,56416.15,4,3,5,12,Top Value,Delhi,35-44,M,Website,0,2,High-Value Customers
+C60,95,5,16670.25,3,3,1,7,Below Average,Hyderabad,55+,F,Marketplace,0,1,Regular Customers
+C61,8,5,56882.0,5,3,5,13,Top Value,Hyderabad,35-44,M,Marketplace,0,2,High-Value Customers
+C62,42,5,28820.35,4,3,2,9,Average,Bangalore,55+,M,App,0,1,Regular Customers
+C63,39,5,37609.25,4,3,3,10,High Value,Delhi,25-34,M,Website,0,1,Regular Customers
+C64,23,5,33803.8,5,3,3,11,Top Value,Pune,25-34,M,Website,0,1,Regular Customers
+C65,140,5,44275.6,2,3,4,9,Average,Mumbai,45-54,F,App,0,2,High-Value Customers
+C66,234,5,14057.1,2,3,1,6,Low Value,Chennai,45-54,F,App,0,0,At-Risk Customers
+C67,58,5,37485.3,4,3,3,10,High Value,Bangalore,55+,F,Website,0,1,Regular Customers
+C68,95,5,42689.55,3,3,4,10,High Value,Chennai,18-24,F,Website,0,2,High-Value Customers
+C69,102,5,34544.0,3,3,3,9,Average,Delhi,45-54,F,App,0,1,Regular Customers
+C7,25,5,50683.0,5,3,5,13,Top Value,Bangalore,45-54,F,Marketplace,0,2,High-Value Customers
+C70,28,5,38995.5,5,3,4,12,Top Value,Delhi,25-34,M,Website,0,1,Regular Customers
+C71,444,5,12675.0,1,3,1,5,Low Value,Chennai,35-44,F,Offline,0,0,At-Risk Customers
+C72,137,5,51105.2,2,3,5,10,High Value,Hyderabad,35-44,F,Offline,0,2,High-Value Customers
+C73,7,5,18111.45,5,3,1,9,Average,Delhi,35-44,M,Website,0,1,Regular Customers
+C74,4,5,43789.25,5,3,4,12,Top Value,Chennai,25-34,F,Offline,0,2,High-Value Customers
+C75,171,5,40909.4,2,3,4,9,Average,Chennai,18-24,F,Offline,0,2,High-Value Customers
+C76,233,5,50524.0,2,3,5,10,High Value,Mumbai,18-24,F,Marketplace,0,2,High-Value Customers
+C77,202,5,50584.8,2,3,5,10,High Value,Mumbai,25-34,M,Marketplace,0,2,High-Value Customers
+C78,33,5,41776.7,5,3,4,12,Top Value,Pune,45-54,F,Offline,1,2,High-Value Customers
+C79,140,5,50878.8,2,3,5,10,High Value,Delhi,18-24,F,Website,0,2,High-Value Customers
+C8,48,5,30742.1,4,3,2,9,Average,Delhi,18-24,M,Website,0,1,Regular Customers
+C80,213,5,40525.7,2,3,4,9,Average,Chennai,55+,F,Marketplace,0,0,At-Risk Customers
+C81,152,5,14578.85,2,3,1,6,Low Value,Mumbai,55+,M,App,0,1,Regular Customers
+C82,99,5,21806.65,3,3,1,7,Below Average,Mumbai,45-54,F,App,0,1,Regular Customers
+C83,75,5,31424.4,4,3,2,9,Average,Pune,55+,F,App,0,1,Regular Customers
+C84,22,5,32407.35,5,3,2,10,High Value,Hyderabad,25-34,M,Marketplace,0,1,Regular Customers
+C85,277,5,32454.55,1,3,2,6,Low Value,Hyderabad,35-44,M,Marketplace,0,0,At-Risk Customers
+C86,6,5,11482.0,5,3,1,9,Average,Pune,35-44,F,Offline,0,1,Regular Customers
+C87,236,5,50750.05,1,3,5,9,Average,Hyderabad,45-54,F,Marketplace,0,2,High-Value Customers
+C88,51,5,53713.7,4,3,5,12,Top Value,Bangalore,45-54,F,Marketplace,0,2,High-Value Customers
+C89,79,5,45980.9,3,3,4,10,High Value,Pune,55+,M,App,0,2,High-Value Customers
+C9,82,5,33519.75,3,3,3,9,Average,Bangalore,55+,F,Website,0,1,Regular Customers
+C90,266,5,41392.15,1,3,4,8,Below Average,Hyderabad,25-34,M,App,0,0,At-Risk Customers
+C91,138,5,22828.2,2,3,1,6,Low Value,Chennai,55+,F,Marketplace,0,1,Regular Customers
+C92,25,5,29205.2,5,3,2,10,High Value,Mumbai,45-54,M,App,0,1,Regular Customers
+C93,57,5,57132.55,4,3,5,12,Top Value,Bangalore,45-54,M,Website,0,2,High-Value Customers
+C94,44,5,26821.85,4,3,2,9,Average,Chennai,18-24,M,Marketplace,0,1,Regular Customers
+C95,336,5,35744.65,1,3,3,7,Below Average,Mumbai,55+,M,Marketplace,0,0,At-Risk Customers
+C96,69,5,18673.7,4,3,1,8,Below Average,Bangalore,55+,M,Marketplace,0,1,Regular Customers
+C97,38,5,12905.25,5,3,1,9,High Value,Mumbai,55+,M,App,0,1,Regular Customers
+C98,69,5,20380.0,4,3,1,8,Below Average,Pune,18-24,M,Website,0,1,Regular Customers
+C99,253,5,33190.0,1,3,3,7,Below Average,Delhi,55+,F,Offline,1,0,At-Risk Customers

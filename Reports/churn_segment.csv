@@ -1,0 +1,6 @@
+Customer_Segment,Total_Customers,Churned_Customers,Churn_Rate_Percentage
+Average,40,0,0.0
+Below Average,40,1,2.5
+High Value,40,2,5.0
+Low Value,40,2,5.0
+Top Value,40,1,2.5

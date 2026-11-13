@@ -1,0 +1,4 @@
+Cluster,Customer_Count,Average_Recency,Average_Monetary,Total_Revenue,Average_Frequency,Revenue_Percentage,Business_Segment,Recommended_Strategy
+0,46,314.6521739130435,32813.64673913043,1509427.75,5.0,20.962922779339703,At-Risk Customers,Re-engagement campaigns and win-back offers
+1,92,75.3586956521739,27786.661956521737,2556372.9,5.0,35.502890216439106,Regular Customers,Product recommendations and loyalty rewards
+2,62,96.53225806451613,50559.08951612903,3134663.55,5.0,43.5341870042212,High-Value Customers,Premium offers and exclusive benefits
