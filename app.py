@@ -1,158 +1,98 @@
-
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import os
 
-# ---------------------------------
 # PAGE CONFIGURATION
-# ---------------------------------
-
-st.set_page_config(
-    page_title="Customer CLV Analytics",
-    page_icon="📊",
-    layout="wide"
-)
+st.set_page_config(page_title="Customer CLV Analytics", page_icon="📊", layout="wide")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
 REPORT_DIR = os.path.join(BASE_DIR, "Reports")
 
 
-# ---------------------------------
 # LOAD DATA
-# ---------------------------------
-
 @st.cache_data
 def load_data():
-
-    sales = pd.read_csv(
-        os.path.join(DATA_DIR, "C:\\Users\\MSI\\Desktop\\Internship\\Customer_CLV_Project\\Data\\cleaned_sales.csv")
-    )
-
-    customers = pd.read_csv(
-        os.path.join(DATA_DIR, "C:\\Users\\MSI\\Desktop\\Internship\\Customer_CLV_Project\\Data\\cleaned_customers.csv")
-    )
-
-    segments = pd.read_csv(
-        os.path.join(REPORT_DIR, "C:\\Users\\MSI\\Desktop\\Internship\\Customer_CLV_Project\\Reports\\kmeans_customer_segments.csv")
-    )
-
-    sales["Date"] = pd.to_datetime(sales["Date"])
-
+    sales = pd.read_csv(os.path.join(DATA_DIR, "cleaned_sales.csv"))
+    customers = pd.read_csv(os.path.join(DATA_DIR, "cleaned_customers.csv"))
+    segments = pd.read_csv(os.path.join(REPORT_DIR, "kmeans_customer_segments.csv"))
+    sales["Date"] = pd.to_datetime(sales["Date"], errors="coerce")
     return sales, customers, segments
 
 
 try:
     sales, customers, segments = load_data()
-
 except Exception as e:
     st.error(f"Unable to load project data: {e}")
+    st.info("Check Data/cleaned_sales.csv, Data/cleaned_customers.csv, and Reports/kmeans_customer_segments.csv.")
     st.stop()
 
 
-# ---------------------------------
 # PREPARE CUSTOMER SEGMENTS
-# ---------------------------------
-
-if "Customer_ID" not in segments.columns:
-    st.error("Customer_ID is missing from the K-Means report.")
+required_columns = ["Customer_ID", "Business_Segment"]
+missing_columns = [c for c in required_columns if c not in segments.columns]
+if missing_columns:
+    st.error("Missing columns in K-Means report: " + ", ".join(missing_columns))
     st.stop()
 
-if "Business_Segment" not in segments.columns:
-    st.error("Business_Segment is missing from the K-Means report.")
-    st.stop()
+segment_mapping = segments[["Customer_ID", "Business_Segment"]].drop_duplicates("Customer_ID")
 
-segment_mapping = segments[
-    ["Customer_ID", "Business_Segment"]
-].drop_duplicates("Customer_ID")
+customer_data = customers.merge(segment_mapping, on="Customer_ID", how="left")
+sales = sales.merge(segment_mapping, on="Customer_ID", how="left")
 
-customer_data = customers.merge(
-    segment_mapping,
-    on="Customer_ID",
-    how="left"
-)
-
-sales = sales.merge(
-    segment_mapping,
-    on="Customer_ID",
-    how="left"
-)
-
-sales["Business_Segment"] = (
-    sales["Business_Segment"].fillna("Unclassified")
-)
-
-customer_data["Business_Segment"] = (
-    customer_data["Business_Segment"].fillna("Unclassified")
-)
+sales["Business_Segment"] = sales["Business_Segment"].fillna("Unclassified")
+customer_data["Business_Segment"] = customer_data["Business_Segment"].fillna("Unclassified")
 
 
-# ---------------------------------
 # DASHBOARD HEADER
-# ---------------------------------
-
 st.title("📊 Customer CLV Analytics Dashboard")
-
-st.caption(
-    "Retail Customer Segmentation, Revenue Analysis "
-    "and Customer Value Insights"
-)
-
+st.caption("Retail Customer Segmentation, Revenue Analysis and Customer Value Insights")
 st.divider()
 
 
-# ---------------------------------
 # SIDEBAR FILTERS
-# ---------------------------------
-
 st.sidebar.header("Dashboard Filters")
 
-segment_options = sorted(
-    sales["Business_Segment"].dropna().unique()
-)
+segment_options = sorted(sales["Business_Segment"].dropna().unique().tolist())
+city_options = sorted(sales["City"].dropna().unique().tolist())
+category_options = sorted(sales["Category"].dropna().unique().tolist())
+channel_options = sorted(sales["Channel"].dropna().unique().tolist())
 
-city_options = sorted(
-    sales["City"].dropna().unique()
-)
 
-category_options = sorted(
-    sales["Category"].dropna().unique()
-)
+def reset_filters():
+    st.session_state["selected_segments_filter"] = segment_options.copy()
+    st.session_state["selected_cities_filter"] = city_options.copy()
+    st.session_state["selected_categories_filter"] = category_options.copy()
+    st.session_state["selected_channels_filter"] = channel_options.copy()
 
-channel_options = sorted(
-    sales["Channel"].dropna().unique()
-)
+
+if "selected_segments_filter" not in st.session_state:
+    st.session_state["selected_segments_filter"] = segment_options.copy()
+if "selected_cities_filter" not in st.session_state:
+    st.session_state["selected_cities_filter"] = city_options.copy()
+if "selected_categories_filter" not in st.session_state:
+    st.session_state["selected_categories_filter"] = category_options.copy()
+if "selected_channels_filter" not in st.session_state:
+    st.session_state["selected_channels_filter"] = channel_options.copy()
+
+st.sidebar.button("Reset All Filters", on_click=reset_filters, use_container_width=True)
 
 selected_segments = st.sidebar.multiselect(
-    "Select Customer Segment",
-    segment_options,
-    default=segment_options
+    "Select Customer Segment", options=segment_options, key="selected_segments_filter"
 )
-
 selected_cities = st.sidebar.multiselect(
-    "Select City",
-    city_options,
-    default=city_options
+    "Select City", options=city_options, key="selected_cities_filter"
 )
-
 selected_categories = st.sidebar.multiselect(
-    "Select Category",
-    category_options,
-    default=category_options
+    "Select Category", options=category_options, key="selected_categories_filter"
 )
-
 selected_channels = st.sidebar.multiselect(
-    "Select Channel",
-    channel_options,
-    default=channel_options
+    "Select Channel", options=channel_options, key="selected_channels_filter"
 )
 
 
-# ---------------------------------
 # APPLY FILTERS
-# ---------------------------------
-
 filtered_sales = sales[
     sales["Business_Segment"].isin(selected_segments)
     & sales["City"].isin(selected_cities)
@@ -163,91 +103,53 @@ filtered_sales = sales[
 filtered_customers = customer_data[
     customer_data["Business_Segment"].isin(selected_segments)
 ].copy()
-
 if "City" in filtered_customers.columns:
     filtered_customers = filtered_customers[
         filtered_customers["City"].isin(selected_cities)
     ]
 
 
-# ---------------------------------
 # KPI CARDS
-# ---------------------------------
-
 total_revenue = filtered_sales["Net_Revenue"].sum()
-
-total_transactions = filtered_sales[
-    "Transaction_ID"
-].nunique()
-
-total_customers = filtered_sales[
-    "Customer_ID"
-].nunique()
-
-average_transaction_value = (
-    total_revenue / total_transactions
-    if total_transactions > 0 else 0
-)
+total_transactions = filtered_sales["Transaction_ID"].nunique()
+total_customers = filtered_sales["Customer_ID"].nunique()
+average_transaction_value = total_revenue / total_transactions if total_transactions > 0 else 0
 
 col1, col2, col3, col4 = st.columns(4)
-
-col1.metric(
-    "Total Revenue",
-    f"₹{total_revenue:,.2f}"
-)
-
-col2.metric(
-    "Total Customers",
-    f"{total_customers:,}"
-)
-
-col3.metric(
-    "Transactions",
-    f"{total_transactions:,}"
-)
-
-col4.metric(
-    "Average Transaction Value",
-    f"₹{average_transaction_value:,.2f}"
-)
+with col1:
+    st.metric("Total Revenue", f"₹{total_revenue:,.2f}")
+    st.caption("Revenue after returns and discounts")
+with col2:
+    st.metric("Total Customers", f"{total_customers:,}")
+    st.caption("Unique customers in the dataset")
+with col3:
+    st.metric("Transactions", f"{total_transactions:,}")
+    st.caption("Total recorded transactions")
+with col4:
+    st.metric("Average Transaction Value", f"₹{average_transaction_value:,.2f}")
+    st.caption("Average revenue per transaction")
 
 st.divider()
 
 
-# ---------------------------------
-# CUSTOMER SEGMENT ANALYSIS
-# ---------------------------------
-
+# 1. CUSTOMER SEGMENTATION
 st.subheader("1. Customer Segmentation")
 
 if not filtered_customers.empty:
-
     segment_summary = (
         filtered_customers.groupby("Business_Segment")
-        .agg(
-            Customers=("Customer_ID", "nunique")
-        )
+        .agg(Customers=("Customer_ID", "nunique"))
         .reset_index()
     )
-
     segment_revenue = (
         filtered_sales.groupby("Business_Segment")["Net_Revenue"]
         .sum()
         .reset_index()
     )
-
-    segment_summary = segment_summary.merge(
-        segment_revenue,
-        on="Business_Segment",
-        how="left"
-    )
-
-    segment_summary["Net_Revenue"] = (
-        segment_summary["Net_Revenue"].fillna(0)
-    )
+    segment_summary = segment_summary.merge(segment_revenue, on="Business_Segment", how="left")
+    segment_summary["Net_Revenue"] = segment_summary["Net_Revenue"].fillna(0)
 
     col1, col2 = st.columns(2)
-
     with col1:
         fig = px.pie(
             segment_summary,
@@ -256,7 +158,7 @@ if not filtered_customers.empty:
             title="Customer Distribution by Segment",
             hole=0.4
         )
-
+        fig.update_traces(textposition="inside", textinfo="percent+label")
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
@@ -266,158 +168,132 @@ if not filtered_customers.empty:
             y="Net_Revenue",
             color="Business_Segment",
             title="Revenue by Customer Segment",
-            labels={
-                "Net_Revenue": "Revenue (₹)",
-                "Business_Segment": "Segment"
-            }
+            text="Net_Revenue",
+            labels={"Net_Revenue": "Revenue (₹)", "Business_Segment": "Segment"}
         )
-
+        fig.update_traces(
+            texttemplate="₹%{y:,.0f}",
+            textposition="outside",
+            cliponaxis=False
+        )
+        fig.update_layout(
+            yaxis_title="Revenue (₹)",
+            xaxis_title="Segment",
+            uniformtext_minsize=8
+        )
         st.plotly_chart(fig, use_container_width=True)
 
-    st.dataframe(
-        segment_summary,
-        use_container_width=True,
-        hide_index=True
-    )
-
+    st.dataframe(segment_summary, use_container_width=True, hide_index=True)
 else:
     st.info("No customers found for the selected filters.")
 
-
 st.divider()
 
 
-# ---------------------------------
-# REVENUE ANALYSIS
-# ---------------------------------
-
+# 2. REVENUE ANALYSIS
 st.subheader("2. Revenue Analysis")
 
-col1, col2 = st.columns(2)
+if not filtered_sales.empty:
+    col1, col2 = st.columns(2)
 
-with col1:
+    with col1:
+        category_revenue = (
+            filtered_sales.groupby("Category")["Net_Revenue"]
+            .sum()
+            .reset_index()
+            .sort_values("Net_Revenue", ascending=False)
+        )
+        fig = px.bar(
+            category_revenue,
+            x="Category",
+            y="Net_Revenue",
+            title="Revenue by Product Category",
+            color="Net_Revenue",
+            text="Net_Revenue",
+            labels={"Net_Revenue": "Revenue (₹)"}
+        )
+        fig.update_traces(texttemplate="₹%{y:,.0f}", textposition="outside", cliponaxis=False)
+        fig.update_layout(uniformtext_minsize=8)
+        st.plotly_chart(fig, use_container_width=True)
 
-    category_revenue = (
-        filtered_sales.groupby("Category")["Net_Revenue"]
-        .sum()
-        .reset_index()
-        .sort_values("Net_Revenue", ascending=False)
+    with col2:
+        city_revenue = (
+            filtered_sales.groupby("City")["Net_Revenue"]
+            .sum()
+            .reset_index()
+            .sort_values("Net_Revenue", ascending=False)
+        )
+        fig = px.bar(
+            city_revenue,
+            x="City",
+            y="Net_Revenue",
+            title="Revenue by City",
+            color="Net_Revenue",
+            text="Net_Revenue",
+            labels={"Net_Revenue": "Revenue (₹)"}
+        )
+        fig.update_traces(texttemplate="₹%{y:,.0f}", textposition="outside", cliponaxis=False)
+        fig.update_layout(uniformtext_minsize=8)
+        st.plotly_chart(fig, use_container_width=True)
+
+    channel_revenue = filtered_sales.groupby("Channel")["Net_Revenue"].sum().reset_index()
+    fig = px.pie(
+        channel_revenue,
+        names="Channel",
+        values="Net_Revenue",
+        title="Revenue Contribution by Sales Channel",
+        hole=0.4
     )
-
-    fig = px.bar(
-        category_revenue,
-        x="Category",
-        y="Net_Revenue",
-        title="Revenue by Product Category",
-        color="Net_Revenue",
-        labels={"Net_Revenue": "Revenue (₹)"}
-    )
-
+    fig.update_traces(textposition="inside", textinfo="percent+label")
     st.plotly_chart(fig, use_container_width=True)
-
-
-with col2:
-
-    city_revenue = (
-        filtered_sales.groupby("City")["Net_Revenue"]
-        .sum()
-        .reset_index()
-        .sort_values("Net_Revenue", ascending=False)
-    )
-
-    fig = px.bar(
-        city_revenue,
-        x="City",
-        y="Net_Revenue",
-        title="Revenue by City",
-        color="Net_Revenue",
-        labels={"Net_Revenue": "Revenue (₹)"}
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
-
-
-# ---------------------------------
-# CHANNEL ANALYSIS
-# ---------------------------------
-
-channel_revenue = (
-    filtered_sales.groupby("Channel")["Net_Revenue"]
-    .sum()
-    .reset_index()
-)
-
-fig = px.pie(
-    channel_revenue,
-    names="Channel",
-    values="Net_Revenue",
-    title="Revenue Contribution by Sales Channel",
-    hole=0.4
-)
-
-st.plotly_chart(fig, use_container_width=True)
-
+else:
+    st.info("No revenue data is available for the selected filters.")
 
 st.divider()
 
 
-# ---------------------------------
-# MONTHLY REVENUE TREND
-# ---------------------------------
-
+# 3. MONTHLY REVENUE TREND
 st.subheader("3. Monthly Revenue Trend")
 
-monthly_revenue = (
-    filtered_sales.assign(
-        Month=filtered_sales["Date"].dt.to_period("M").astype(str)
+if not filtered_sales.empty:
+    monthly_revenue = (
+        filtered_sales.dropna(subset=["Date"])
+        .assign(Month=lambda df: df["Date"].dt.to_period("M").astype(str))
+        .groupby("Month")["Net_Revenue"]
+        .sum()
+        .reset_index()
     )
-    .groupby("Month")["Net_Revenue"]
-    .sum()
-    .reset_index()
-)
-
-fig = px.line(
-    monthly_revenue,
-    x="Month",
-    y="Net_Revenue",
-    markers=True,
-    title="Monthly Revenue Trend",
-    labels={"Net_Revenue": "Revenue (₹)"}
-)
-
-st.plotly_chart(fig, use_container_width=True)
-
+    fig = px.line(
+        monthly_revenue,
+        x="Month",
+        y="Net_Revenue",
+        markers=True,
+        title="Monthly Revenue Trend",
+        labels={"Net_Revenue": "Revenue (₹)"}
+    )
+    fig.update_traces(
+        texttemplate="₹%{y:,.0f}",
+        mode="lines+markers+text",
+        textposition="top center"
+    )
+    st.plotly_chart(fig, use_container_width=True)
+else:
+    st.info("No monthly revenue data is available for the selected filters.")
 
 st.divider()
 
 
-# ---------------------------------
-# CLV VALIDATION
-# ---------------------------------
-
+# 4. SIX-MONTH REVENUE VALIDATION
 st.subheader("4. Six-Month Revenue Validation")
 
-validation_path = os.path.join(
-    REPORT_DIR,
-    "clv_validation_results.csv"
-)
+validation_path = os.path.join(REPORT_DIR, "clv_validation_results.csv")
 
 if os.path.exists(validation_path):
-
     validation = pd.read_csv(validation_path)
-
-    validation = validation.merge(
-        segment_mapping,
-        on="Customer_ID",
-        how="left"
-    )
-
-    validation = validation[
-        validation["Business_Segment"].isin(selected_segments)
-    ]
+    validation = validation.merge(segment_mapping, on="Customer_ID", how="left")
+    validation = validation[validation["Business_Segment"].isin(selected_segments)]
 
     if not validation.empty:
-
         mae = (
             validation["Actual_Future_Revenue"]
             - validation["Predicted_Future_Revenue"]
@@ -431,7 +307,6 @@ if os.path.exists(validation_path):
         ).mean() ** 0.5
 
         col1, col2 = st.columns(2)
-
         col1.metric("Six-Month Revenue MAE", f"₹{mae:,.2f}")
         col2.metric("Six-Month Revenue RMSE", f"₹{rmse:,.2f}")
 
@@ -446,28 +321,20 @@ if os.path.exists(validation_path):
                 "Predicted_Future_Revenue": "Predicted Revenue (₹)"
             }
         )
-
         st.plotly_chart(fig, use_container_width=True)
-
         st.caption(
             "This is a six-month revenue run-rate baseline, "
             "not a full lifetime CLV prediction model."
         )
-
     else:
         st.info("No validation records for the selected segments.")
-
 else:
     st.warning("CLV validation report was not found.")
-
 
 st.divider()
 
 
-# ---------------------------------
-# CUSTOMER DETAILS
-# ---------------------------------
-
+# 5. CUSTOMER DETAILS
 st.subheader("5. Customer Details")
 
 display_columns = [
@@ -483,7 +350,6 @@ display_columns = [
     ]
     if column in filtered_customers.columns
 ]
-
 st.dataframe(
     filtered_customers[display_columns],
     use_container_width=True,
@@ -491,14 +357,9 @@ st.dataframe(
 )
 
 
-# ---------------------------------
-# BUSINESS RECOMMENDATIONS
-# ---------------------------------
-
+# 6. BUSINESS RECOMMENDATIONS
 st.divider()
-
 st.subheader("6. Business Recommendations")
-
 st.markdown("""
 **High-Value Customers**
 - Offer premium products and exclusive loyalty rewards.
@@ -513,38 +374,22 @@ st.markdown("""
 - Send personalized offers and purchase reminders.
 """)
 
-st.caption(
-    "Customer CLV Analysis Project | Week 9 Dashboard v1"
-)
 
-
-# ---------------------------------
-# 6. DOWNLOAD REPORTS
-# ---------------------------------
-
+# 7. DOWNLOAD FILTERED REPORTS
 st.divider()
-
-st.subheader("6. Download Filtered Reports")
+st.subheader("7. Download Filtered Reports")
 
 col1, col2 = st.columns(2)
-
 with col1:
-    customer_csv = filtered_customers.to_csv(
-        index=False
-    ).encode("utf-8")
-
+    customer_csv = filtered_customers.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="Download Customer Data",
         data=customer_csv,
         file_name="filtered_customer_data.csv",
         mime="text/csv"
     )
-
 with col2:
-    sales_csv = filtered_sales.to_csv(
-        index=False
-    ).encode("utf-8")
-
+    sales_csv = filtered_sales.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="Download Sales Data",
         data=sales_csv,
@@ -553,37 +398,15 @@ with col2:
     )
 
 
-# ---------------------------------
-# 7. DYNAMIC BUSINESS INSIGHTS
-# ---------------------------------
-
+# 8. DYNAMIC BUSINESS INSIGHTS
 st.divider()
-
-st.subheader("7. Business Insights")
+st.subheader("8. Business Insights")
 
 if not filtered_sales.empty:
-
-    total_filtered_revenue = filtered_sales[
-        "Net_Revenue"
-    ].sum()
-
-    top_category = (
-        filtered_sales.groupby("Category")["Net_Revenue"]
-        .sum()
-        .idxmax()
-    )
-
-    top_city = (
-        filtered_sales.groupby("City")["Net_Revenue"]
-        .sum()
-        .idxmax()
-    )
-
-    top_channel = (
-        filtered_sales.groupby("Channel")["Net_Revenue"]
-        .sum()
-        .idxmax()
-    )
+    total_filtered_revenue = filtered_sales["Net_Revenue"].sum()
+    top_category = filtered_sales.groupby("Category")["Net_Revenue"].sum().idxmax()
+    top_city = filtered_sales.groupby("City")["Net_Revenue"].sum().idxmax()
+    top_channel = filtered_sales.groupby("Channel")["Net_Revenue"].sum().idxmax()
 
     st.markdown(
         f"""
@@ -595,19 +418,19 @@ if not filtered_sales.empty:
     )
 
     if not filtered_customers.empty:
-
         segment_counts = (
-            filtered_customers.groupby("Business_Segment")
-            ["Customer_ID"].nunique()
+            filtered_customers.groupby("Business_Segment")["Customer_ID"]
+            .nunique()
         )
-
         largest_segment = segment_counts.idxmax()
-
         st.info(
             f"The largest selected customer segment is "
             f"**{largest_segment}**, with "
             f"**{segment_counts.max()} customers**."
         )
-
 else:
     st.info("No business insights available for the selected filters.")
+
+
+# FOOTER
+st.caption("Customer CLV Analysis Project | Week 9 Dashboard")
