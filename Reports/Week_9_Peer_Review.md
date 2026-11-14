@@ -19,23 +19,28 @@ The reviewer provided the following feedback:
 
 ## 3. Revision List
 
-| No. | Suggested improvement | Action |
-|---|---|---|
-| 1 | Improve chart descriptions | Pending |
-| 2 | Explain customer segmentation findings more clearly | Planned |
-| 3 | Improve presentation of business insights | Planned |
+| No. | Peer Suggestion | Action Taken | Status |
+|---|---|---|---|
+| 1 | Improve chart descriptions | Added business explanations below important charts | Completed |
+| 2 | Explain customer segmentation findings | Added customer counts and revenue contribution insights | Completed |
+| 3 | Improve presentation of business insights | Added explanatory captions to revenue and validation charts | Completed |
 
-## 4. Existing Improvements
+## 4. Implementation and Testing
 
-- KPI cards include explanatory descriptions.
-- Important charts display data labels.
-- Reset All Filters button has been implemented.
-- Interactive dashboard filters have been tested.
+- Added business explanations below customer distribution and revenue segmentation charts.
+- Added insights to product category, city, and sales channel charts.
+- Added explanations to monthly revenue trends and six-month validation.
+- Tested the updated dashboard locally.
+- Published the updated dashboard through Streamlit Community Cloud.
+- Verified that the updated online dashboard is working.
 
-## 5. Review Evidence
+## 5. Peer Review Evidence
 
-A screenshot of the reviewer's WhatsApp feedback is included as supporting evidence.
+Reviewer: Akash GCU  
+Review Date: 14 November 2026
+
+The original WhatsApp feedback screenshot is attached as supporting evidence.
 
 ## 6. Conclusion
 
-The peer review confirmed that the dashboard is well-designed, interactive, and easy to understand. The feedback identified opportunities to improve chart explanations and business interpretations. These suggestions will guide the next dashboard revision.
+The peer feedback helped improve the clarity and interpretation of the Customer CLV Analytics Dashboard. The suggested chart-description improvements were implemented, tested, and published online.
