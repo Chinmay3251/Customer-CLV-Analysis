@@ -160,6 +160,13 @@ if not filtered_customers.empty:
         )
         fig.update_traces(textposition="inside", textinfo="percent+label")
         st.plotly_chart(fig, use_container_width=True)
+        
+        st.caption(
+             "Business Insight: Regular Customers form the largest group "
+             "with 92 customers, followed by High-Value Customers with 62 "
+             "and At-Risk Customers with 46. Focus on retaining valuable "
+             "customers and improving engagement across all segments."
+)
 
     with col2:
         fig = px.bar(
@@ -182,6 +189,12 @@ if not filtered_customers.empty:
             uniformtext_minsize=8
         )
         st.plotly_chart(fig, use_container_width=True)
+        st.caption(
+                    "Business Insight: High-Value Customers contribute the largest "
+                    "share of revenue (43.53%), followed by Regular Customers (35.50%) "
+                    "and At-Risk Customers (20.96%). Focus on retaining high-value "
+                    "customers and re-engaging at-risk customers."
+)
 
     st.dataframe(segment_summary, use_container_width=True, hide_index=True)
 else:
@@ -215,6 +228,13 @@ if not filtered_sales.empty:
         fig.update_traces(texttemplate="₹%{y:,.0f}", textposition="outside", cliponaxis=False)
         fig.update_layout(uniformtext_minsize=8)
         st.plotly_chart(fig, use_container_width=True)
+        
+        st.caption(
+    "Business Insight: Apparel is the highest revenue-generating "
+    "category, contributing ₹1,076,927, followed by Sports at "
+    "₹1,013,288. Focus on maintaining strong-performing categories "
+    "and identifying opportunities to improve lower-performing categories."
+)
 
     with col2:
         city_revenue = (
@@ -235,6 +255,14 @@ if not filtered_sales.empty:
         fig.update_traces(texttemplate="₹%{y:,.0f}", textposition="outside", cliponaxis=False)
         fig.update_layout(uniformtext_minsize=8)
         st.plotly_chart(fig, use_container_width=True)
+        
+        st.caption(
+    "Business Insight: Chennai is the leading city by revenue, "
+    "contributing approximately ₹1,023,296, followed by Pune "
+    "at ₹1,000,715. Focus on understanding customer demand "
+    "in high-performing cities and exploring growth opportunities "
+    "in other locations."
+)
 
     channel_revenue = filtered_sales.groupby("Channel")["Net_Revenue"].sum().reset_index()
     fig = px.pie(
@@ -246,6 +274,13 @@ if not filtered_sales.empty:
     )
     fig.update_traces(textposition="inside", textinfo="percent+label")
     st.plotly_chart(fig, use_container_width=True)
+    
+    st.caption(
+    "Business Insight: The chart shows how each sales channel "
+    "contributes to total revenue. Use this comparison to identify "
+    "strong-performing channels and opportunities to improve "
+    "sales through other channels."
+)
 else:
     st.info("No revenue data is available for the selected filters.")
 
@@ -277,6 +312,14 @@ if not filtered_sales.empty:
         textposition="top center"
     )
     st.plotly_chart(fig, use_container_width=True)
+    
+    
+    st.caption(
+    "Business Insight: The monthly revenue trend helps identify "
+    "changes in sales performance over time. Monitor revenue "
+    "increases and decreases to identify seasonal patterns, "
+    "evaluate business performance, and plan future sales strategies."
+)
 else:
     st.info("No monthly revenue data is available for the selected filters.")
 
@@ -323,9 +366,12 @@ if os.path.exists(validation_path):
         )
         st.plotly_chart(fig, use_container_width=True)
         st.caption(
-            "This is a six-month revenue run-rate baseline, "
-            "not a full lifetime CLV prediction model."
-        )
+    "Business Insight: The six-month revenue validation compares "
+    "actual revenue with predicted revenue. The improved baseline "
+    "achieved an MAE of ₹8,934.36 and RMSE of ₹10,831.92, "
+    "representing approximately 61.3% lower MAE than the initial "
+    "naive baseline. This helps evaluate prediction accuracy."
+)
     else:
         st.info("No validation records for the selected segments.")
 else:
